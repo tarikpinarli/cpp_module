@@ -6,7 +6,7 @@ int main()
 {
     cout << GREEN << endl;
     {
-        Weapon sword = Weapon("sword");
+        Weapon sword("sword");
         HumanA bob("Bob", sword);
         bob.attack();
         sword.setType("knife");
@@ -14,7 +14,7 @@ int main()
     }
     cout << BLUE << endl;
     {
-        Weapon bow = Weapon("bow");
+        Weapon bow("bow");
         HumanB jim("Jim");
         jim.setWeapon(bow);
         jim.attack();
@@ -23,7 +23,7 @@ int main()
     }
     cout << RED << endl;
     {
-        Weapon axe = Weapon("axe");
+        Weapon axe("axe");
         HumanB Jon("Jon");
         Jon.attack();
         Jon.setWeapon(axe);

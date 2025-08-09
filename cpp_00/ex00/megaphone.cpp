@@ -6,12 +6,15 @@
 /*   By: tpinarli <tpinarli@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:46:18 by tpinarli          #+#    #+#             */
-/*   Updated: 2025/06/21 13:46:21 by tpinarli         ###   ########.fr       */
+/*   Updated: 2025/08/09 13:30:16 by tpinarli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cctype>
+
+using std::cout;
+using std::endl;
 
 int main(int argc, char **argv)
 {
@@ -21,13 +24,13 @@ int main(int argc, char **argv)
 		{
 			for (int j = 0; argv[i][j] != '\0'; j++)
 				argv[i][j] = (char)toupper(argv[i][j]);
-			std::cout << argv[i];
-			if (argv[i] != NULL)
-				std::cout << " ";
+			cout << argv[i];
+			if (argv[i + 1] != NULL)
+				cout << " ";
 		}
-		std::cout << std::endl;
+		cout << endl;
 	}
 	else
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+		cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << endl;
 	return (0);
 }

@@ -14,11 +14,11 @@ using std::cerr;
 
 class Zombie {
 private:
-    std::string name;
+    string name;
 public:
     ~Zombie();
-    void    setName(std::string name);
+    void    setName(string name);
     void    announce();
 };
-Zombie *zombieHorde(int count, std::string name);
+Zombie *zombieHorde(int count, string name);
 #endif

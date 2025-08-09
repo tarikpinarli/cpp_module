@@ -23,6 +23,6 @@ int main() {
     cout << "Value of the string variable:           " << brain << endl;
     cout << "Value of the string stringPTR:          " << *stringPTR << endl;
     cout << "Value of the string stringREF:          " << stringREF << RESET << endl;
-    
+
     return 0;
 }

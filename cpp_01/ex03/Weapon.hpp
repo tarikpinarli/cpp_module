@@ -18,7 +18,7 @@ private:
     string type;
 public:
     Weapon(string WeaponType);
-    const string& getType() const;
+    const string getType() const;
     void    setType(string newType);
 };
 

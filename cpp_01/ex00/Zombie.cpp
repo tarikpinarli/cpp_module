@@ -4,7 +4,7 @@ Zombie::~Zombie() {
     cout << RED << name << " destroyed." << RESET << endl;
 }
 
-Zombie::Zombie(std::string name) {
+Zombie::Zombie(string name) {
     this->name = name;
 }
 
