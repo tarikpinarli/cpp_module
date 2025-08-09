@@ -29,6 +29,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@echo "$(GREEN)Executable file deleted.$(RESET)"
 
 re: fclean all
 

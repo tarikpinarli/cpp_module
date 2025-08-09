@@ -3,7 +3,7 @@ NAME        = brain
 CXX         = c++
 CXXFLAGS    = -Wall -Wextra -Werror -std=c++98
 
-SRCS        = main.cpp 
+SRCS        = main.cpp
 OBJS_DIR    = obj
 OBJS        = $(SRCS:%.cpp=$(OBJS_DIR)/%.o)
 
@@ -27,6 +27,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@echo "$(GREEN)Executable file deleted.$(RESET)"
 
 re: fclean all
 

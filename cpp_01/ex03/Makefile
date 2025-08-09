@@ -1,20 +1,36 @@
-NAME = violence
+NAME        = violence
 
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I.
+CXX         = c++
+CXXFLAGS    = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
-OBJ = $(SRC:.cpp=.o)
-HEADER = Weapon.hpp HumanA.hpp HumanB.hpp
+SRCS        = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+OBJS_DIR    = obj
+OBJS        = $(SRCS:%.cpp=$(OBJS_DIR)/%.o)
+
+HEADERS     = Weapon.hpp HumanA.hpp HumanB.hpp
+
+GREEN       = \033[0;32m
+RED  		= \033[0;31m
+RESET       = \033[0m
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "$(GREEN)Compilation completed!$(RESET)"
+
+$(OBJS_DIR)/%.o: %.cpp $(HEADERS)
+	@mkdir -p $(OBJS_DIR)
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	@rm -rf $(OBJS_DIR)
+	@echo "$(GREEN)Object files deleted.$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(GREEN)Executable file deleted.$(RESET)"
 
 re: fclean all
+
+.PHONY: all clean fclean re
