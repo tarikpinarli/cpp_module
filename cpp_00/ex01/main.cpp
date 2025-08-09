@@ -5,11 +5,10 @@
 int main() {
     PhoneBook phonebook;
     std::string command;
-
     std::cout << "Welcome to My Awesome PhoneBook!" << std::endl;
-    std::cout << "Type ADD, SEARCH, or EXIT" << std::endl;
 
     while (true) {
+        std::cout << "Type ADD, SEARCH, or EXIT" << std::endl;
         std::cout << "\n> ";
         std::getline(std::cin, command);
 
@@ -26,7 +25,7 @@ int main() {
             std::cout << "Goodbye!" << std::endl;
             break;
         } else {
-            std::cout << "Unknown command. Use ADD, SEARCH, or EXIT." << std::endl;
+            std::cout << "Unknown command." << std::endl;
         }
     }
     return 0;

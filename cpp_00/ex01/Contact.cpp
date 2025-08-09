@@ -2,6 +2,7 @@
 #include <iomanip>
 #include "Contact.hpp"
 
+
 void Contact::setContact() {
     std::cout << "Enter First Name: ";
     std::getline(std::cin, firstName);
