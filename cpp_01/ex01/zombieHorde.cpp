@@ -6,11 +6,11 @@ Zombie *zombieHorde(int count, string name) {
         cerr    << RED << "Error: Cannot create a horde with "
                 << count << " zombies. Number must be positive."
                 << RESET << endl;
-        return nullptr;
+        return NULL;
     }
     Zombie *horde = new Zombie[count];
     for (int i = 0; i < count; i++) {
         horde[i].setName(name);
     }
     return horde;
-} 
+}
