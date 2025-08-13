@@ -3,22 +3,18 @@
 
 #include <iostream>
 
-using std::string;
-using std::cout;
-using std::endl;
-
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
 #define RESET "\033[0m"
 
 class Zombie {
 private:
-    string name;
+    std::string name;
 public:
-    Zombie(string name);
+    Zombie(std::string name);
     ~Zombie();
     void announce();
 };
-void    randomChump(string name);
-Zombie*    newZombie(string name);
+void        randomChump(std::string name);
+Zombie*     newZombie(std::string name);
 #endif

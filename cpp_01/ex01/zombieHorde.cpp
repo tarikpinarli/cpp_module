@@ -1,11 +1,11 @@
 #include "Zombie.hpp"
 
-Zombie *zombieHorde(int count, string name) {
+Zombie *zombieHorde(int count, std::string name) {
     if (count <= 0)
     {
-        cerr    << RED << "Error: Cannot create a horde with "
+        std::cerr    << RED << "Error: Cannot create a horde with "
                 << count << " zombies. Number must be positive."
-                << RESET << endl;
+                << RESET << std::endl;
         return NULL;
     }
     Zombie *horde = new Zombie[count];

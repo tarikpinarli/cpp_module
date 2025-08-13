@@ -5,24 +5,20 @@
 #define RED "\033[0;31m"
 #define RESET "\033[0m"
 
-using std::string;
-using std::cout;
-using std::endl;
-
 int main() {
-    string brain = "HI THIS IS BRAIN";
-    string *stringPTR = &brain;
-    string &stringREF = brain;
+    std::string brain = "HI THIS IS BRAIN";
+    std::string *stringPTR = &brain;
+    std::string &stringREF = brain;
 
-    cout << GREEN << "Memory address of the string variable:  " << &brain << endl;
-    cout << "Memory address held by stringPTR:       " << stringPTR << endl;
-    cout << "Memory address held by stringREF:       " << &stringREF << endl;
+    std::cout << GREEN << "Memory address of the string variable:  " << &brain << std::endl;
+    std::cout << "Memory address held by stringPTR:       " << stringPTR << std::endl;
+    std::cout << "Memory address held by stringREF:       " << &stringREF << std::endl;
 
-    cout << "--------------------------------------------------------" << endl;
+    std::cout << "--------------------------------------------------------" << std::endl;
 
-    cout << "Value of the string variable:           " << brain << endl;
-    cout << "Value of the string stringPTR:          " << *stringPTR << endl;
-    cout << "Value of the string stringREF:          " << stringREF << RESET << endl;
+    std::cout << "Value of the string variable:           " << brain << std::endl;
+    std::cout << "Value of the string stringPTR:          " << *stringPTR << std::endl;
+    std::cout << "Value of the string stringREF:          " << stringREF << RESET << std::endl;
 
     return 0;
 }

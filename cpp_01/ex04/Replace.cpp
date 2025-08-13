@@ -2,23 +2,23 @@
 #include <fstream>
 #include <sstream>
 
-std::string replace_all(const std::string& text,
-                        const std::string& s1,
-                        const std::string& s2)
+static std::string replace_line(std::string line,
+                               std::string s1,
+                               std::string s2)
 {
-    if (s1.empty() || s1 == s2) return text;
-
     std::string out;
-    out.reserve(text.size());
-    std::string::size_type pos = 0;
-    std::string::size_type prev = 0;
+    int pos = 0;
 
-    while ((pos = text.find(s1, prev)) != std::string::npos) {
-        out.append(text, prev, pos - prev); // aradaki kısmı kopyala
-        out.append(s2);                      // yerine s2 koy
-        prev = pos + s1.size();              // aramaya kaldığın yerden devam
+    while (true) {
+        std::string::size_type hit = line.find(s1, pos);
+        if (hit == std::string::npos) {
+            out.append(line, pos, std::string::npos);
+            break;
+        }
+        out.append(line, pos, hit - pos);
+        out.append(s2);
+        pos = hit + s1.size();
     }
-    out.append(text, prev, std::string::npos); // kalan kuyruk
     return out;
 }
 
@@ -37,20 +37,25 @@ bool replace_file(const std::string& filename,
     }
 
     std::ifstream in(filename.c_str());
-    if (!in) {
-        err = "cannot open input file";
+    if(!in)
+    {
+        err = "file cannot open.";
         return false;
     }
-
-    std::ostringstream buf;
-    buf << in.rdbuf();
-    const std::string content = buf.str();
-
-    const std::string replaced = replace_all(content, s1, s2);
-
     std::ofstream out((filename + ".replace").c_str());
-    if (!out) { err = "cannot open output file"; return false; }
+    if (!out) {
+        err = "cannot create output file";
+        return false;
+    }
+    std::string line;
+    bool first = true;
+    while (std::getline(in, line)) {
+        if (!first)
+            out << '\n';
+        first = false;
+        out << replace_line(line, s1, s2);
+    }
 
-    out << replaced;
+
     return true;
 }
