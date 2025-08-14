@@ -12,7 +12,7 @@ static std::string replace_line(std::string line,
     while (true) {
         std::string::size_type hit = line.find(s1, pos);
         if (hit == std::string::npos) {
-            out.append(line, pos, std::string::npos);
+            out.append(line, pos, line.size() - pos);
             break;
         }
         out.append(line, pos, hit - pos);
@@ -55,7 +55,5 @@ bool replace_file(const std::string& filename,
         first = false;
         out << replace_line(line, s1, s2);
     }
-
-
     return true;
 }

@@ -1,0 +1,23 @@
+#ifndef HARL_HPP
+#define HARL_HPP
+
+#include <string>
+
+class Harl {
+public:
+    Harl();
+    ~Harl();
+
+    void complain(const std::string& level);
+
+private:
+    void debug(void);
+    void info(void);
+    void warning(void);
+    void error(void);
+
+    // Not: Üye-fonksiyon işaretçisini .cpp’de kullanacağız.
+    // typedef void (Harl::*Action)(); // İstersen header’da da tanımlayabiliriz.
+};
+
+#endif // HARL_HPP
