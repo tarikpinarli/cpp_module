@@ -34,17 +34,16 @@ void Harl::error(void) {
 
 // --- Public arayüz ---
 void Harl::complain(const std::string& level) {
-    // 1) Anahtar listesi (string karşılaştırma için)
-    static const std::string levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+    std::string levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
     // 2) Üye-fonksiyon işaretçileri (aynı sırada olmak zorunda)
-    typedef void (Harl::*Action)();
-    static const Action actions[4] = {
+    void (Harl::*actions[4])() ={
         &Harl::debug,
         &Harl::info,
         &Harl::warning,
         &Harl::error
     };
+
 
     // 3) Eşleşmeyi bul ve çağır
     for (int i = 0; i < 4; ++i) {
