@@ -20,19 +20,19 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
         _energyPoints = other._energyPoints;
         _attackDamage = other._attackDamage;
     }
-    std::cout << "[ClapTrap]Copy assignment operator called. '" << _name << "' created." << std::endl;
+    std::cout << "Copy assignment operator called. '" << _name << "' created." << std::endl;
     return *this;
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called 'ClapTrap " << _name << "' destroyed.\n";
+    std::cout << RED << "Destructor called 'ClapTrap " << _name << "' destroyed.\n" << RESET;
 }
 
 void ClapTrap::attack(const std::string& target)
 {
     if (_hitPoints == 0) {
-        std::cout << "ClapTrap " << _name << " cannot attack: no hit points left!\n";
+        std::cout << "ClapTrap " << _name << " cannot attack: no HP left!\n";
         return;
     }
     if (_energyPoints == 0) {
@@ -48,7 +48,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
     std::cout << WHITE;
     if (_hitPoints == 0) {
-        std::cout << "ClapTrap " << _name << " is already at 0 hitPoints.\n";
+        std::cout << "ClapTrap " << _name << " is already at 0 HP.\n";
         return;
     }
     if (amount >= _hitPoints) {

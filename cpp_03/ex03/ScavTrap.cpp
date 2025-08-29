@@ -19,14 +19,14 @@ ScavTrap::ScavTrap(const std::string& name)
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other)
-    : ClapTrap(other) // base kopyalanır; HP/EP/AD de diğerinden gelir
+    : ClapTrap(other)
 {
     std::cout << "Copy constructor called 'ScavTrap " << _name << "' duplicated\n";
 }
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "Destructor called 'ScavTrap " << _name << "' destroyed.\n";
+    std::cout << "Destructor called 'ScavTrap " << _name << "' destroyed.\n" << RESET;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
@@ -68,7 +68,7 @@ void ScavTrap::guardGate()
         return;
     }
     if (_energyPoints <= 0) {
-        std::cout << "ScavTrap " << _name << " cannot guard: no energy left!\n";
+        std::cout << "ScavTrap " << _name << " cannot guard: no energy!\n";
         std::cout << RESET;
         return;
     }

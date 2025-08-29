@@ -20,7 +20,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
         _energyPoints = other._energyPoints;
         _attackDamage = other._attackDamage;
     }
-    std::cout << "Copy assignment operator called. '" << _name << "' created." << std::endl;
+    std::cout << "[ClapTrap]Copy assignment operator called. '" << _name << "' created." << std::endl;
     return *this;
 }
 
