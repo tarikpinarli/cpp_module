@@ -30,7 +30,7 @@ int main()
         std::cout << std::endl;
         std::cout << WHITE << "ScavTrap " << s1.getName()
               << " has reached 0 HP and can no longer perform any actions.\n";
-        std::cout << BLINKRED;
+        std::cout << RED;
     }
     {
         std::cout << RESET;
@@ -49,7 +49,7 @@ int main()
         std::cout << std::endl;
         std::cout << WHITE << "ScavTrap " << s2.getName()
               << " has reached 0 energy and can no longer perform any actions.\n";
-        std::cout << BLINKRED;
+        std::cout << RED;
     }
     {
         std::cout << RESET;
@@ -75,7 +75,7 @@ int main()
             printAll(s3);
             std::cout << std::endl;
         }
-        std::cout << BLINKRED;
+        std::cout << RED;
     }
     return 0;
 }

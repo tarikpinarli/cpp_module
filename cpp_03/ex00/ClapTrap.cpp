@@ -26,7 +26,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called 'ClapTrap " << _name << "' destroyed.\n";
+    std::cout << RED << "Destructor called 'ClapTrap " << _name << "' destroyed.\n" << RESET;
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -73,4 +73,20 @@ void ClapTrap::beRepaired(unsigned int amount)
     _hitPoints += amount;
     std::cout << "ClapTrap " << _name << " repairs itself for "
               << amount << " points.\n";
+}
+
+const std::string& ClapTrap::getName() const {
+    return _name;
+}
+
+unsigned int ClapTrap::getHitPoints() const {
+    return _hitPoints;
+}
+
+unsigned int ClapTrap::getEnergyPoints() const {
+    return _energyPoints;
+}
+
+unsigned int ClapTrap::getAttackDamage() const {
+    return _attackDamage;
 }

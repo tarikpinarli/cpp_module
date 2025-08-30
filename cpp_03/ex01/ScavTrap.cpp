@@ -42,7 +42,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
 
 void ScavTrap::attack(const std::string& target)
 {
-    std::cout << WHITE;
+    std::cout << BYELLOW;
     if (_hitPoints <= 0) {
         std::cout << "ScavTrap " << _name << " cannot attack: no HP left!\n";
         std::cout << RESET;
