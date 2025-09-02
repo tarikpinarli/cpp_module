@@ -2,11 +2,11 @@
 
 Cat::Cat() : Animal() {
     _type = "Cat";
-    std::cout << "[Cat] constructed (type=" << _type << ")" << std::endl;
+    std::cout << "[Cat] Default constractor called. (type=" << _type << ")" << std::endl;
 }
 
 Cat::Cat(const Cat& other) : Animal(other) {
-    std::cout << "[Cat] copy-constructed" << std::endl;
+    std::cout << "[Cat] Copy constractor called. (type=" << _type << ")" << std::endl;
 }
 
 Cat::~Cat() {
@@ -16,7 +16,7 @@ Cat::~Cat() {
 Cat& Cat::operator=(const Cat& other) {
     if (this != &other)
         Animal::operator=(other);
-    std::cout << "[Cat] copy-assigned" << std::endl;
+    std::cout << "[Cat] Copy operator called. (type=" << _type << ")" << std::endl;
     return *this;
 }
 

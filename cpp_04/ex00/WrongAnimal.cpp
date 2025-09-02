@@ -1,17 +1,17 @@
 #include "WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal() : _type("WrongAnimal") {
-   std::cout << "[WrongAnimal] constructed (type=" << _type << ")" << std::endl;
+   std::cout << "[WrongAnimal] Default constractor called. (type=" << _type << ")" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& other) : _type(other._type) {
-    std::cout << "[WrongAnimal] copy-constructed" << std::endl;
+    std::cout << "[WrongAnimal] Copy constractor called. (type=" << _type << ")" << std::endl;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other) {
     if (this != &other)
         _type = other._type;
-    std::cout << "[WrongAnimal] copy-assigned" << std::endl;
+    std::cout << "[WrongAnimal] Copy operator called. (type=" << _type << ")" << std::endl;
     return *this;
 }
 

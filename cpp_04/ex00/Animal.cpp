@@ -1,17 +1,17 @@
 #include "Animal.hpp"
 
 Animal::Animal() : _type("Animal") {
-    std::cout << "[Animal] constructed (type=" << _type << ")" << std::endl;
+    std::cout << "[Animal] Default constractor called. (type=" << _type << ")" << std::endl;
 }
 
 Animal::Animal(const Animal& other) : _type(other._type) {
-    std::cout << "[Animal] copy-constructed" << std::endl;
+    std::cout << "[Animal] Copy constructor called. (type=" << _type << ")" << std::endl;
 }
 
 Animal& Animal::operator=(const Animal& other) {
     if (this != &other)
         _type = other._type;
-    std::cout << "[Animal] copy-assigned" << std::endl;
+    std::cout << "[Animal] Copy operator called. (type=" << _type << ")" << std::endl;
     return *this;
 }
 
