@@ -1,4 +1,3 @@
-// ex01/main.cpp
 #include <iostream>
 #include "Animal.hpp"
 #include "Dog.hpp"
@@ -6,7 +5,6 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-// ----- Pretty headers -----
 static void section(const std::string& title) {
     std::cout << BLUE << "\n========== " << title << " ==========\n" << WHITE << "\n";
 }
@@ -17,8 +15,6 @@ static void subSection(const std::string& title) {
 int main() {
     section("Default constructor test");
     {
-        subSection("Animal");
-        Animal  a;
         subSection("Cat");
         Cat     c;
         subSection("Dog");
@@ -28,10 +24,6 @@ int main() {
 
     section("Copy constructor test");
     {
-        subSection("Animal");
-        Animal a;
-        Animal b(a);
-
         subSection("Dog (deep copy)");
         Dog d1;
         d1.setIdea(0, "chase the ball");
@@ -66,7 +58,7 @@ int main() {
         Dog Dog_2;
         Dog_2.setIdea(2, "dig holes");
         subSection("Dog_2 = Dog_1");
-        Dog_2 = Dog_1;
+        Dog_2 = Dog_1; // operator= must deep-copy Brain
         std::cout << "Dog_1.idea[2] = " << Dog_1.getIdea(2) << "\n";
         std::cout << "Dog_2.idea[2] = " << Dog_2.getIdea(2) << "\n";
         std::cout << GREEN << "mutate assignee -> Dog_2.idea[2] = 'sleep'\n" << WHITE;
@@ -92,27 +84,22 @@ int main() {
 
     section("Subject test");
     {
-        subSection("Animal");
-        const Animal* meta = new Animal();
         subSection("Dog");
         const Animal* j = new Dog();
         subSection("Cat");
         const Animal* i = new Cat();
 
         subSection("getType");
-        std::cout << meta->getType() << " " << std::endl;
         std::cout << j->getType() << " " << std::endl;
         std::cout << i->getType() << " " << std::endl;
 
         subSection("makeSound");
-        meta->makeSound();
         j->makeSound();
         i->makeSound();
 
         std::cout << RED << std::endl;
         delete i;
         delete j;
-        delete meta;
     }
 
     section("Array of Animal* (half Dog, half Cat)");
@@ -157,6 +144,7 @@ int main() {
         std::cout << RED << std::endl;
     }
 
+    // 6) Wrong hierarchy demo (no virtual)
     section("Wrong hierarchy (no virtual)");
     {
         subSection("WrongAnimal");
