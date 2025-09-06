@@ -139,12 +139,11 @@ int main() {
 
 
         subSection("Delete via base pointers");
-        for (int k = 0; k < N; ++k) delete Animal[k];
+        for (int k = 0; k < N; ++k)
+            delete Animal[k];
 
         std::cout << RED << std::endl;
     }
-
-    // 6) Wrong hierarchy demo (no virtual)
     section("Wrong hierarchy (no virtual)");
     {
         subSection("WrongAnimal");
