@@ -21,14 +21,14 @@ $(NAME): $(OBJS)
 
 $(OBJS_DIR)/%.o: %.cpp $(HEADERS)
 	@mkdir -p $(OBJS_DIR)
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	@rm -rf $(OBJS_DIR)
+	rm -rf $(OBJS_DIR)
 	@echo "$(GREEN)Object files deleted.$(RESET)"
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 	@echo "$(GREEN)Executable file deleted.$(RESET)"
 
 re: fclean all

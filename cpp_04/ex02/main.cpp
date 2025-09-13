@@ -58,7 +58,7 @@ int main() {
         Dog Dog_2;
         Dog_2.setIdea(2, "dig holes");
         subSection("Dog_2 = Dog_1");
-        Dog_2 = Dog_1; // operator= must deep-copy Brain
+        Dog_2 = Dog_1;
         std::cout << "Dog_1.idea[2] = " << Dog_1.getIdea(2) << "\n";
         std::cout << "Dog_2.idea[2] = " << Dog_2.getIdea(2) << "\n";
         std::cout << GREEN << "mutate assignee -> Dog_2.idea[2] = 'sleep'\n" << WHITE;
@@ -115,7 +115,6 @@ int main() {
             else
                 Animal[k] = new Cat();
         }
-
         subSection("Sounds");
         for (int k = 0; k < N; ++k) {
             std::cout << k << ": " << Animal[k]->getType() << " -> ";
@@ -135,8 +134,6 @@ int main() {
                 std::cout << "(no brain)\n";
             }
         }
-
-
 
         subSection("Delete via base pointers");
         for (int k = 0; k < N; ++k)
