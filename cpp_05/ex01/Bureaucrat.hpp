@@ -17,7 +17,7 @@
 #define WHITE   "\033[1;97m"
 #define RESET "\033[0m"
 
-class Form; 
+class Form;
 
 class Bureaucrat {
 private:
