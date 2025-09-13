@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
 void Bureaucrat::validateGrade(int grade) const {
     if (grade < 1)
@@ -19,7 +18,7 @@ void Bureaucrat::validateGrade(int grade) const {
         std::cout << GREEN << "VALID GRADE " << "(name=" << _name << ", grade=" << _grade << ")" << WHITE << std::endl;
 }
 
-Bureaucrat::Bureaucrat() : _name("Intern"), _grade(150) {
+Bureaucrat::Bureaucrat() : _name("Itern"), _grade(150) {
     std::cout << "[Bureaucrat] Default constractor called. (name=" << _name << ", grade=" << _grade << ")" << std::endl;
     validateGrade(_grade);
 }
@@ -47,12 +46,8 @@ Bureaucrat::~Bureaucrat() {
     std::cout << RED << _name << " destroyed" << std::endl;
 }
 
-const std::string& Bureaucrat::getName() const {
-    return _name;
-}
-int                Bureaucrat::getGrade() const {
-    return _grade;
-}
+const std::string& Bureaucrat::getName() const { return _name; }
+int                Bureaucrat::getGrade() const { return _grade; }
 
 void Bureaucrat::incrementGrade() {
     std::cout << "Increment operator called. (" << _grade << " -> "  << _grade -1 << ")" << std::endl;
@@ -79,14 +74,4 @@ const char* Bureaucrat::GradeTooLowException::what() const noexcept {
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b) {
     os << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
     return os;
-}
-
-void Bureaucrat::signForm(Form& form) const {
-    try {
-        form.beSigned(*this);
-        std::cout << this->getName() << " signed " << form.getName() << "\n";
-    } catch (const std::exception& e) {
-        std::cout << this->getName() << " couldn't sign " << form.getName()
-                  << " because " << e.what() << "\n";
-    }
 }
