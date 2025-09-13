@@ -4,19 +4,17 @@
 void Bureaucrat::validateGrade(int grade) const {
     if (grade < 1)
     {
-        std::cout << YELLOW << "INVALID GRADE " << "(name=" << _name << ", grade=" << grade << ")" << WHITE << std::endl;
+        std::cout << YELLOW << "INVALID BUREAUCRAT GRADE " << "(name=" << _name << ", grade=" << grade << ")" << WHITE << std::endl;
         std::cout << "Throwing GradeTooHighException() exception, " << _name << " will be destroyed!" << std::endl;
         throw GradeTooHighException();
     }
 
     if (grade > 150)
     {
-        std::cout << YELLOW << "INVALID GRADE " << "(name=" << _name << ", grade=" << grade << ")" << WHITE << std::endl;
+        std::cout << YELLOW << "INVALID BUREAUCRAT GRADE " << "(name=" << _name << ", grade=" << grade << ")" << WHITE << std::endl;
         std::cout << "Throwing GradeTooLowException() exception, " << _name << " will be destroyed!" << std::endl;
         throw GradeTooLowException();
     }
-    else
-        std::cout << GREEN << "VALID GRADE " << "(name=" << _name << ", grade=" << _grade << ")" << WHITE << std::endl;
 }
 
 Bureaucrat::Bureaucrat() : _name("Intern"), _grade(150) {
@@ -82,11 +80,16 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b) {
 }
 
 void Bureaucrat::signForm(Form& form) const {
+    if (form.isSigned())
+    {
+        std::cout << form.getName() << " form is already signed." << std::endl;
+        return;
+    }
     try {
         form.beSigned(*this);
         std::cout << this->getName() << " signed " << form.getName() << "\n";
     } catch (const std::exception& e) {
-        std::cout << this->getName() << " couldn't sign " << form.getName()
-                  << " because " << e.what() << "\n";
+        std::cout << RED << "Authority exception caught: " << WHITE << this->getName() << " couldn't sign " << form.getName()
+                  << " form because " << e.what() << "\n";
     }
 }
