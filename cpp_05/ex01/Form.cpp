@@ -69,6 +69,6 @@ std::ostream& operator<<(std::ostream& os, const Form& f) {
        << "\" [signed=" << (f.isSigned() ? "yes" : "no")
        << ", signGrade=" << f.getSignGrade()
        << ", execGrade=" << f.getExecGrade()
-       << "]" << WHITE;
+       << "]" << WHITE << std::endl;
     return os;
 }
