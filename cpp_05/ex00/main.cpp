@@ -112,6 +112,6 @@ int main() {
     catch (const std::exception& e) {
         std::cout << "Caught exception: " << e.what() << std::endl;
     }
-
+    std::cout << RESET;
     return 0;
 }

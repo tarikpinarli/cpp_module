@@ -196,7 +196,6 @@ int main() {
     {
         std::cout << "UNEXPECTED: " << e.what() << "\n";
     }
-
-
+    std::cout << RESET;
     return 0;
 }

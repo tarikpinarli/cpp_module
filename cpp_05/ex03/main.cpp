@@ -19,10 +19,12 @@ int main() {
     section("Creating ShrubberyCreationForm with intern");
     try
     {
+        AForm *ptr;
         subSection("Intern creation");
         Intern a;
         subSection("Form creation");
-        a.makeForm("ShrubberyCreationForm", "ShrubberyCreationForm by Intern");
+        ptr = a.makeForm("ShrubberyCreationForm", "ShrubberyCreationForm by Intern");
+        delete ptr;
     }
     catch(const std::exception& e)
     {
@@ -31,10 +33,13 @@ int main() {
     section("Creating RobotomyRequestForm with intern");
     try
     {
+        AForm *ptr;
+
         subSection("Intern creation");
         Intern a;
         subSection("Form creation");
-        a.makeForm("RobotomyRequestForm", "RobotomyRequestForm by Intern");
+        ptr = a.makeForm("RobotomyRequestForm", "RobotomyRequestForm by Intern");
+        delete ptr;
     }
     catch(const std::exception& e)
     {
@@ -44,10 +49,13 @@ int main() {
     section("Creating PresidentialPardonForm with intern");
     try
     {
+        AForm *ptr;
+
         subSection("Intern creation");
         Intern a;
         subSection("Form creation");
-        a.makeForm("PresidentialPardonForm", "PresidentialPardonForm by Intern");
+        ptr = a.makeForm("PresidentialPardonForm", "PresidentialPardonForm by Intern");
+        delete ptr;
     }
     catch(const std::exception& e)
     {
@@ -57,15 +65,18 @@ int main() {
     section("Unknown form creation attempt");
     try
     {
+        AForm *ptr;
+
         subSection("Intern creation");
         Intern a;
         subSection("Form creation");
-        a.makeForm("unknown", "PresidentialPardonForm by Intern");
+        ptr = a.makeForm("unknown", "PresidentialPardonForm by Intern");
+        delete ptr;
     }
     catch(const std::exception& e)
     {
         std::cout << "UNEXPECTED: " << e.what() << "\n";
     }
-
+    std::cout << RESET;
     return 0;
 }
