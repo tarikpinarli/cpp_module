@@ -46,8 +46,12 @@ Bureaucrat::~Bureaucrat() {
     std::cout << RED << _name << " destroyed" << std::endl;
 }
 
-const std::string& Bureaucrat::getName() const { return _name; }
-int                Bureaucrat::getGrade() const { return _grade; }
+const std::string& Bureaucrat::getName() const {
+    return _name;
+}
+int Bureaucrat::getGrade() const {
+    return _grade;
+}
 
 void Bureaucrat::incrementGrade() {
     std::cout << "Increment operator called. (" << _grade << " -> "  << _grade -1 << ")" << std::endl;
@@ -56,7 +60,7 @@ void Bureaucrat::incrementGrade() {
 }
 
 void Bureaucrat::decrementGrade() {
-    std::cout << "Increment operator called. (" << _grade << " -> "  << _grade + 1 << ")" << std::endl;
+    std::cout << "Decrement operator called. (" << _grade << " -> "  << _grade + 1 << ")" << std::endl;
     validateGrade(_grade + 1);
     ++_grade;
 }
