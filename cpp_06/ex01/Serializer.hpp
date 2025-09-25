@@ -11,8 +11,8 @@ public:
 
 private:
     Serializer();
-    Serializer(const Serializer&);
-    Serializer& operator=(const Serializer&);
+    Serializer(const Serializer& other);
+    Serializer& operator=(const Serializer& other);
     ~Serializer();
 };
 

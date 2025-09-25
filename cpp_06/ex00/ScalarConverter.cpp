@@ -5,11 +5,12 @@ ScalarConverter::ScalarConverter() {
 
 }
 
-ScalarConverter::ScalarConverter(const ScalarConverter&) {
-
+ScalarConverter::ScalarConverter(const ScalarConverter& other) {
+    (void)other;
 }
 
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter&) {
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
+    (void)other;
     return *this;
 }
 

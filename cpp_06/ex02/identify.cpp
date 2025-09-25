@@ -7,11 +7,13 @@
 #include <ctime>    // time
 
 Base* generate(void) {
-    static bool seeded = false;
-    if (!seeded) {
-        std::srand(static_cast<unsigned int>(std::time(0)));
-        seeded = true;
+    static bool start = false;
+    if (!start)
+    {
+        srand(time(0));
+        start = true;
     }
+
 
     int r = std::rand() % 3;
     if (r == 0)
