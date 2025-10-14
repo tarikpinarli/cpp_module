@@ -1,4 +1,3 @@
-// ========================== Constructors ==========================
 template <typename T>
 Array<T>::Array() : _data(NULL), _size(0) {}
 
@@ -14,14 +13,12 @@ Array<T>::Array(const Array& other) : _data(NULL), _size(0)
     copy_from(other);
 }
 
-// =========================== Destructor ===========================
 template <typename T>
 Array<T>::~Array()
 {
     destroy();
 }
 
-// ========================== Assignment ============================
 template <typename T>
 Array<T>& Array<T>::operator=(const Array& other)
 {
@@ -33,7 +30,6 @@ Array<T>& Array<T>::operator=(const Array& other)
     return *this;
 }
 
-// ========================= Element access =========================
 template <typename T>
 T& Array<T>::operator[](size_t index)
 {
@@ -50,14 +46,12 @@ const T& Array<T>::operator[](size_t index) const
     return _data[index];
 }
 
-// ============================ Observers ===========================
 template <typename T>
 size_t Array<T>::size() const
 {
     return _size;
 }
 
-// ============================ Utilities ===========================
 template <typename T>
 void Array<T>::allocate_and_value_init(size_t n)
 {
