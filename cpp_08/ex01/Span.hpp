@@ -6,6 +6,10 @@
 #include <vector>
 #include <climits>
 
+#define BLUE  "\033[1;94m"
+#define YELLOW  "\033[1;33m"
+#define WHITE   "\033[1;97m"
+#define GREEN "\033[1;32m"
 
 
 class Span {
@@ -24,6 +28,8 @@ public:
     int shortestSpan(void) const;
     int longestSpan(void) const;
     int	size(void) const;
+    void print() const;
+
 };
 
 std::ostream&	operator<<(std::ostream& out, const Span& instance);

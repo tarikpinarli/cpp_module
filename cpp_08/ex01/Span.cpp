@@ -66,6 +66,19 @@ int Span::longestSpan(void) const {
     return tmp.back() - tmp.front();
 }
 
+void Span::print() const
+{
+    std::cout << "Numbers in Span: [ ";
+    for (size_t i = 0; i < _data.size(); i++)
+    {
+        std::cout << _data[i];
+        if (i + 1 != _data.size())
+            std::cout << ", ";
+    }
+    std::cout << " ]" << std::endl;
+}
+
+
 std::ostream&	operator<<(std::ostream& out, const Span& instance)
 {
     out << "Summary:" << std::endl;
