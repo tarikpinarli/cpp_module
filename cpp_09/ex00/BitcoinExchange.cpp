@@ -1,4 +1,9 @@
 #include "BitcoinExchange.hpp"
+#include <sstream>
+#include <iostream>
+#include <stdexcept>
+#include <climits>
+#include <cstdlib>
 
 
 BitcoinExchange::BitcoinExchange(std::string inputFile) : _inputFile(inputFile), _dataFile("data.csv"){}
@@ -11,6 +16,119 @@ std::string& BitcoinExchange::getDataFileName() {
 std::string& BitcoinExchange::getInputFileName() {
     return _dataFile;
 }
+
+
+
+static std::string trim(const std::string &s)
+{
+    std::string::size_type start = 0;
+    while (start < s.size() && (s[start] == ' ' || s[start] == '\t'))
+        ++start;
+
+    std::string::size_type end = s.size();
+    while (end > start && (s[end - 1] == ' ' || s[end - 1] == '\t'))
+        --end;
+
+    return s.substr(start, end - start);
+}
+
+static bool isValidDate(const std::string &date)
+{
+    if (date.size() != 10)
+        return false;
+    if (date[4] != '-' || date[7] != '-')
+        return false;
+
+    for (int i = 0; i < 10; ++i) {
+        if (i == 4 || i == 7)
+            continue;
+        if (date[i] < '0' || date[i] > '9')
+            return false;
+    }
+
+    int year  = std::atoi(date.substr(0, 4).c_str());
+    int month = std::atoi(date.substr(5, 2).c_str());
+    int day   = std::atoi(date.substr(8, 2).c_str());
+
+    if (year < 0)
+        return false;
+    if (month < 1 || month > 12)
+        return false;
+    if (day < 1 || day > 31)
+        return false;
+    return true;
+}
+
+void BitcoinExchange::findRate() const
+{
+    std::ifstream inputLine("input.txt");
+    if (!inputLine.is_open())
+        throw std::runtime_error("Error: could not open the input file");
+
+    std::string line;
+    bool firstLine = true;
+
+    while (std::getline(inputLine, line))
+    {
+        if (firstLine) {
+            firstLine = false;
+            continue;
+        }
+
+        if (line.empty())
+            continue;
+        std::string::size_type pipePos = line.find('|');
+        if (pipePos == std::string::npos) {
+            std::cout << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+        std::string dateStr   = trim(line.substr(0, pipePos));
+        std::string valueStr  = trim(line.substr(pipePos + 1));
+        if (!isValidDate(dateStr)) {
+            std::cout << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+        if (valueStr.empty()) {
+            std::cout << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+
+        std::stringstream ss(valueStr);
+        double value;
+        if (!(ss >> value)) {
+            std::cout << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+        if (value < 0.0) {
+            std::cout << "Error: not a positive number." << std::endl;
+            continue;
+        }
+        if (value > static_cast<double>(INT_MAX)) {
+            std::cout << "Error: too large number." << std::endl;
+            continue;
+        }
+        float fvalue = static_cast<float>(value);
+        std::map<std::string, float>::const_iterator it = _rates.lower_bound(dateStr);
+        if (it == _rates.end()) {
+            if (_rates.empty()) {
+                std::cout << "Error: no rate data." << std::endl;
+                continue;
+            }
+            --it;
+        } else if (it->first != dateStr) {
+            if (it == _rates.begin()) {
+                std::cout << "Error: no rate for date " << dateStr << std::endl;
+                continue;
+            }
+            --it;
+        }
+        float rate   = it->second;
+        float result = rate * fvalue;
+        std::cout << dateStr << " => " << fvalue << " = " << result << std::endl;
+    }
+}
+
+
 
 void BitcoinExchange::printRates() const
 {

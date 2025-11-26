@@ -11,14 +11,11 @@ int main(int argc, char** argv) {
     {
         BitcoinExchange btc(argv[1]);
         btc.loadData(btc.getDataFileName());
-        btc.printRates();
+        btc.findRate();
     }
     catch(const std::exception& e)
     {
         std::cerr << "Exception cought: " << e.what() << '\n';
     }
-
-
-
     return 0;
 }

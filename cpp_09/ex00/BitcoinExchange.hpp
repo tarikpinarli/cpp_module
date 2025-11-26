@@ -21,4 +21,5 @@ public:
     std::string& getInputFileName();
     void loadData(const std::string &filename);
     void printRates() const;
+    void findRate() const;
 };
