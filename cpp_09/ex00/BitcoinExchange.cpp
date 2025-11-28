@@ -17,8 +17,6 @@ std::string& BitcoinExchange::getInputFileName() {
     return _dataFile;
 }
 
-
-
 static std::string trim(const std::string &s)
 {
     std::string::size_type start = 0;
@@ -38,21 +36,20 @@ static bool isValidDate(const std::string &date)
         return false;
     if (date[4] != '-' || date[7] != '-')
         return false;
-
     for (int i = 0; i < 10; ++i) {
         if (i == 4 || i == 7)
             continue;
         if (date[i] < '0' || date[i] > '9')
             return false;
     }
-
     int year  = std::atoi(date.substr(0, 4).c_str());
     int month = std::atoi(date.substr(5, 2).c_str());
     int day   = std::atoi(date.substr(8, 2).c_str());
-
     if (year < 0)
         return false;
     if (month < 1 || month > 12)
+        return false;
+    if (month == 2 && day > 29)
         return false;
     if (day < 1 || day > 31)
         return false;
@@ -61,10 +58,9 @@ static bool isValidDate(const std::string &date)
 
 void BitcoinExchange::findRate() const
 {
-    std::ifstream inputLine("input.txt");
+    std::ifstream inputLine(_inputFile);
     if (!inputLine.is_open())
         throw std::runtime_error("Error: could not open the input file");
-
     std::string line;
     bool firstLine = true;
 
@@ -74,7 +70,6 @@ void BitcoinExchange::findRate() const
             firstLine = false;
             continue;
         }
-
         if (line.empty())
             continue;
         std::string::size_type pipePos = line.find('|');
@@ -82,7 +77,7 @@ void BitcoinExchange::findRate() const
             std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
-        std::string dateStr   = trim(line.substr(0, pipePos));
+        std::string dateStr   = trim(line.substr(0, pipePos - 1));
         std::string valueStr  = trim(line.substr(pipePos + 1));
         if (!isValidDate(dateStr)) {
             std::cout << "Error: bad input => " << line << std::endl;
@@ -92,7 +87,6 @@ void BitcoinExchange::findRate() const
             std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
-
         std::stringstream ss(valueStr);
         double value;
         if (!(ss >> value)) {
@@ -129,12 +123,10 @@ void BitcoinExchange::findRate() const
 }
 
 
-
 void BitcoinExchange::printRates() const
 {
     std::map<std::string, float>::const_iterator it = _rates.begin();
     std::map<std::string, float>::const_iterator end = _rates.end();
-
     for (; it != end; ++it) {
         std::cout << it->first << " => " << it->second << std::endl;
     }
@@ -161,7 +153,6 @@ static bool parseLine(const std::string &line, std::string &date, float &value)
     ss >> value;
     if (ss.fail())
         return false;
-
     return true;
 }
 
@@ -188,6 +179,5 @@ void BitcoinExchange::loadData(const std::string &filename)
             continue;
         this->_rates[date] = value;
     }
-
     file.close();
 }

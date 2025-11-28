@@ -8,6 +8,11 @@
 #include <string>
 #include <fstream>
 
+#define BLUE  "\033[1;94m"
+#define YELLOW  "\033[1;33m"
+#define WHITE   "\033[1;97m"
+#define GREEN "\033[1;32m"
+
 class BitcoinExchange {
 private:
     std::string _inputFile;
