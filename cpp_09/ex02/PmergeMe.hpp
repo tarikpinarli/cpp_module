@@ -16,7 +16,9 @@ class PmergeMe {
 private:
     std::vector<int> _dataVector;
     std::deque<int> _dataDeque;
-    
+
+    long long _vectorComparisonCount = 0;
+    long long _dequeComparisonCount = 0;
     std::vector<int> generateJacobsthalSequence(size_t n);
     std::deque<int> generateJacobsthalSequenceDeque(size_t n);
     double getTime();
