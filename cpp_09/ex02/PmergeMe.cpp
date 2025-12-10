@@ -97,44 +97,9 @@ std::deque<int> PmergeMe::generateJacobsthalSequenceDeque(size_t n) {
     return jacobsthal;
 }
 
-void PmergeMe::insertionSortVector(std::vector<int>& arr, int left, int right) {
-    for (int i = left + 1; i <= right; i++) {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= left && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = key;
-    }
-}
-
-void PmergeMe::insertionSortDeque(std::deque<int>& arr, int left, int right) {
-    for (int i = left + 1; i <= right; i++) {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= left) {
-            _vectorComparisonCount++;
-            if (arr[j] > key) {
-                arr[j + 1] = arr[j];
-                j--;
-            } else {
-                break; // Found the spot
-            }
-        }
-        arr[j + 1] = key;
-    }
-}
-
 // Ford-Johnson Algorithm for Vector
 void PmergeMe::mergeInsertSortVector(std::vector<int>& arr) {
     size_t n = arr.size();
-
-    // Base case: use insertion sort for small arrays
-    if (n <= 16) {
-        insertionSortVector(arr, 0, n - 1);
-        return;
-    }
 
     // Step 1: Group elements into pairs and sort each pair
     std::vector<std::pair<int, int> > pairs;
@@ -233,11 +198,6 @@ void PmergeMe::mergeInsertSortVector(std::vector<int>& arr) {
 // Ford-Johnson Algorithm for Deque (similar implementation)
 void PmergeMe::mergeInsertSortDeque(std::deque<int>& arr) {
     size_t n = arr.size();
-
-    if (n <= 16) {
-        insertionSortDeque(arr, 0, n - 1);
-        return;
-    }
 
     std::vector<std::pair<int, int> > pairs;
     int straggler = -1;
